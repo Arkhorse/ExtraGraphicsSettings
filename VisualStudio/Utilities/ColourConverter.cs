@@ -1,56 +1,55 @@
 ﻿namespace ExtraGraphicsSettings
 {
+    /// <summary>
+    /// A class containing useful processing functions to convert things to RGBa Color
+    /// </summary>
     public class ColourConverter
     {
+        /// <summary>
+        /// Used to convert the GodraysColours Enum to the Unity Color Enum
+        /// </summary>
+        /// <param name="setting">GodraysColours Enum setting from the Settings Instance</param>
+        /// <returns>Processed Color</returns>
+        /// <remarks>This is needed since ModSettings does not support the Color type at this time (2023/07/13)</remarks>
         public static Color GetGodraysColourFromSettings(GodraysColours setting)
         {
             Color color = Color.white;
 
-            switch (setting)
+            color = setting switch
             {
-                case GodraysColours.blue:
-                    color = Color.blue;
-                    break;
-                case GodraysColours.cyan:
-                    color = Color.cyan;
-                    break;
-                case GodraysColours.gray:
-                    color = Color.gray;
-                    break;
-                case GodraysColours.green:
-                    color = Color.green;
-                    break;
-                case GodraysColours.grey:
-                    color = Color.grey;
-                    break;
-                case GodraysColours.magenta:
-                    color = Color.magenta;
-                    break;
-                case GodraysColours.red:
-                    color = Color.red;
-                    break;
-                case GodraysColours.white:
-                    color = Color.white;
-                    break;
-                case GodraysColours.yellow:
-                    color = Color.yellow;
-                    break;
-                default:
-                    color = Color.magenta;
-                    break;
-            }
+                GodraysColours.blue         => Color.blue,
+                GodraysColours.cyan         => Color.cyan,
+                GodraysColours.gray         => Color.gray,
+                GodraysColours.green        => Color.green,
+                GodraysColours.grey         => Color.grey,
+                GodraysColours.magenta      => Color.magenta,
+                GodraysColours.red          => Color.red,
+                GodraysColours.white        => Color.white,
+                GodraysColours.yellow       => Color.yellow,
+                _ => Settings.DefaultGodraysColour,
+            };
             return color;
         }
-
-        public static Color GetGodraysColourFromSettings(int red, int green, int blue)
+        /// <summary>
+        /// Used to convert 4 int's to a RGBa Color
+        /// </summary>
+        /// <param name="red">Red part of RGBa</param>
+        /// <param name="green">Green part of RGBa</param>
+        /// <param name="blue">Blue part of RGBa</param>
+        /// <param name="alpha">Alpha part of RGBa</param>
+        /// <returns>Processed Color</returns>
+        public static Color GetGodraysColourFromSettings(int red, int green, int blue, int alpha)
         {
-            Vector4 CustomColor = new Vector3(red, green, blue);
+            Vector4 CustomColor = new Vector4(red, green, blue, alpha);
             return CustomColor;
         }
-
+        /// <summary>
+        /// Used to convert the Godrays Custom creator to a proper RGBa Color
+        /// </summary>
+        /// <returns>Processed Color</returns>
         public static Color GetGodraysColourFromSettings()
         {
-            Vector4 color = new Vector3(Settings.Instance.GodraysColorRed, Settings.Instance.GodraysColorGreen, Settings.Instance.GodraysColorBlue);
+            Vector4 color = GetGodraysColourFromSettings(Settings.Instance.GodraysColorRed, Settings.Instance.GodraysColorGreen, Settings.Instance.GodraysColorBlue, Settings.Instance.GodraysColorAlpha);
             return color;
         }
     }
