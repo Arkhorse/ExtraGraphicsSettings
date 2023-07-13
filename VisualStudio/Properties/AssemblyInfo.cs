@@ -13,4 +13,5 @@
 [assembly: MelonInfo(typeof(ExtraGraphicsSettings.ExtraGraphicsSettings), BuildInfo.Name, BuildInfo.Version, BuildInfo.Author, BuildInfo.DownloadLink)]
 [assembly: MelonGame("Hinterland", "TheLongDark")]
 
+// This should always be in order of ASCII
 [assembly: MelonIncompatibleAssemblies("DisableVignette", "EnableStatusBarPercentages", "FreeLookInCars", "WeaponCrosshair")]
