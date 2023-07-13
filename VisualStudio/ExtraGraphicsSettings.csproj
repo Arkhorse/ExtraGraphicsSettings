@@ -27,6 +27,7 @@
 		<Using Include="HarmonyLib" />
 		<Using Include="MelonLoader" />
 		<Using Include="UnityEngine" />
+		<Using Include="ModSettings"/>
 	</ItemGroup>
 
   <PropertyGroup>
