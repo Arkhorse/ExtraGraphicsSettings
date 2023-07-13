@@ -1,8 +1,6 @@
-using ModSettings;
-
 namespace ExtraGraphicsSettings
 {
-    internal class Settings : JsonModSettings
+    public class Settings : JsonModSettings
     {
         /// <summary>
         /// Allows first load settings code
@@ -17,6 +15,9 @@ namespace ExtraGraphicsSettings
         /// </summary>
         internal static Color GodraysColor { get; set; } = Color.magenta;
 
+        internal static Color DefaultGodraysColour { get; set; } = new(0, 0, 0, 0);
+
+        #region General
         [Section("General")]
 
         [Name("Enable Vignette")]
@@ -26,20 +27,20 @@ namespace ExtraGraphicsSettings
         [Name("Enable Chromatic Abberration")]
         [Description("Disable this if you DONT want Chromatic Abberration")]
         public bool Chromatic = true;
-
+        #endregion
+        #region Godrays
         [Section("Godrays")]
 
         [Name("Enable Godrays")]
         [Description("Select Off if you dont want Godrays")]
         public GodraysPresets Godrays = GodraysPresets.On;
-
-        #region presets
+        #endregion
+        #region Godrays Presets
         [Name("Presets")]
         [Choice(new string[] { "red", "green", "blue", "yellow", "cyan", "magenta" })]
         public GodraysColours GodraysColorPreset = GodraysColours.magenta;
         #endregion
-
-        #region CUSTOM
+        #region Godrays RGBa Selector
         [Name("Red")]
         [Slider(0, 255)]
         public int GodraysColorRed      = 0;
@@ -53,8 +54,7 @@ namespace ExtraGraphicsSettings
         [Slider(0, 255)]
         public int GodraysColorAlpha    = 255;
         #endregion
-
-        #region StatusBarPercent
+        #region Status Bar Percent
         [Name("Enable Status Bar Percents")]
         [Description("Adds a percent under the circle")]
         public bool EnableStatusBarPercents = false;
@@ -64,7 +64,7 @@ namespace ExtraGraphicsSettings
         [Slider(10, 30)]
         public int PercentLabelFontSize = 14;
         #endregion
-
+        #region Free Look In Cars
         [Section("Free Look In Cars")]
 
         [Name("Enable")]
@@ -80,7 +80,9 @@ namespace ExtraGraphicsSettings
         [Slider(0, 90)]
         public int FreeLook_MaxPitch    = 90;
 
+        #endregion
         #region Weapon Crosshair
+
         [Name("Enable Weapon Crosshair Options")]
         public bool EnableCrosshairModification = false;
 
@@ -104,7 +106,7 @@ namespace ExtraGraphicsSettings
 
         private void FirstLoad()
         {
-            Logger.Log($"First Load, Setting relevant settings to invisible");
+            Logger.Log($"First Load");
 
             SetFieldVisible(nameof(GodraysColorPreset), false);
             SetFieldVisible(nameof(GodraysColorRed), false);
@@ -155,8 +157,19 @@ namespace ExtraGraphicsSettings
 
         protected override void OnConfirm()
         {
-            GodraysColor = ColourConverter.GetGodraysColourFromSettings();
-            GodraysUpdater.UpdateGodraysColor();
+            if ( DefaultGodraysColour != new Color(0,0,0,0) )
+            {
+                GodraysColor = Instance.Godrays switch
+                {
+                    GodraysPresets.On => DefaultGodraysColour,
+                    GodraysPresets.Off => Color.clear,
+                    GodraysPresets.Presets => ColourConverter.GetGodraysColourFromSettings(Instance.GodraysColorPreset),
+                    GodraysPresets.Custom => ColourConverter.GetGodraysColourFromSettings(),
+                    _ => DefaultGodraysColour
+                };
+                GodraysUpdater.UpdateGodraysColor();
+            }
+            
             base.OnConfirm();
         }
 
