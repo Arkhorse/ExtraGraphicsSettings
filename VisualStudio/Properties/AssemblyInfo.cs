@@ -13,4 +13,4 @@
 [assembly: MelonInfo(typeof(ExtraGraphicsSettings.ExtraGraphicsSettings), BuildInfo.Name, BuildInfo.Version, BuildInfo.Author, BuildInfo.DownloadLink)]
 [assembly: MelonGame("Hinterland", "TheLongDark")]
 
-[assembly: MelonIncompatibleAssemblies("FreeLookInCars", "DisableVignette", "WeaponCrosshair")]
+[assembly: MelonIncompatibleAssemblies("DisableVignette", "EnableStatusBarPercentages", "FreeLookInCars", "WeaponCrosshair")]
