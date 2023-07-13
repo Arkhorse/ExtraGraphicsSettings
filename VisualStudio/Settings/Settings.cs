@@ -27,7 +27,6 @@ namespace ExtraGraphicsSettings
         [Description("Disable this if you DONT want Chromatic Abberration")]
         public bool Chromatic = true;
 
-
         [Section("Godrays")]
 
         [Name("Enable Godrays")]
