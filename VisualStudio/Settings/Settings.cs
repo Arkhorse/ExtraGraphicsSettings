@@ -23,24 +23,31 @@ namespace ExtraGraphicsSettings
         [Name("Enable Vignette")]
         [Description("Disable this if you DONT want Vignette")]
         public bool Vignette = true;
-
         [Name("Enable Chromatic Abberration")]
         [Description("Disable this if you DONT want Chromatic Abberration")]
         public bool Chromatic = true;
+        [Name("Enable Debug")]
+        [Description("If enabled, mod will dump alot of info to the MelonLoader log")]
+        public bool DebugEnabled = false;
+
         #endregion
         #region Godrays
+
         [Section("Godrays")]
 
-        [Name("Enable Godrays")]
+        [Name("Godrays")]
         [Description("Select Off if you dont want Godrays")]
         public GodraysPresets Godrays = GodraysPresets.On;
+
         #endregion
         #region Godrays Presets
+
         [Name("Presets")]
-        [Choice(new string[] { "red", "green", "blue", "yellow", "cyan", "magenta" })]
         public GodraysColours GodraysColorPreset = GodraysColours.magenta;
+
         #endregion
         #region Godrays RGBa Selector
+
         [Name("Red")]
         [Slider(0, 255)]
         public int GodraysColorRed      = 0;
@@ -53,35 +60,40 @@ namespace ExtraGraphicsSettings
         [Name("Alpha")]
         [Slider(0, 255)]
         public int GodraysColorAlpha    = 255;
+
         #endregion
         #region Status Bar Percent
+
+        [Section("Status Bar Percents")]
+
         [Name("Enable Status Bar Percents")]
         [Description("Adds a percent under the circle")]
         public bool EnableStatusBarPercents = false;
-
         [Name("Percent Label Font Size")]
         [Description("Sets the size of the text")]
         [Slider(10, 30)]
         public int PercentLabelFontSize = 14;
+
         #endregion
         #region Free Look In Cars
+
         [Section("Free Look In Cars")]
 
         [Name("Enable")]
         [Description("Free look allows you to look all around you")]
         public bool EnableFreeLook = false;
-
         [Name("Max/Min Yaw")]
         [Description("180 is not possible as it locks your camera")]
         [Slider(90, 175)]
         public int FreeLook_MaxYaw      = 175;
-
         [Name("Max/Min Pitch")]
         [Slider(0, 90)]
         public int FreeLook_MaxPitch    = 90;
 
         #endregion
         #region Weapon Crosshair
+
+        [Section("Weapon Crosshair")]
 
         [Name("Enable Weapon Crosshair Options")]
         public bool EnableCrosshairModification = false;
@@ -99,11 +111,6 @@ namespace ExtraGraphicsSettings
         public bool CrosshairModificationBow = false;
         #endregion
 
-        // Always at the end
-        [Name("Enable Debug")]
-        [Description("If enabled, mod will dump alot of info to the MelonLoader log")]
-        public bool DebugEnabled = false;
-
         private void FirstLoad()
         {
             Logger.Log($"First Load");
@@ -112,6 +119,7 @@ namespace ExtraGraphicsSettings
             SetFieldVisible(nameof(GodraysColorRed), false);
             SetFieldVisible(nameof(GodraysColorBlue), false);
             SetFieldVisible(nameof(GodraysColorGreen), false);
+            SetFieldVisible(nameof(GodraysColorAlpha), false);
 
             SetFieldVisible(nameof(PercentLabelFontSize), false);
             SetFieldVisible(nameof(FreeLook_MaxYaw), false);
@@ -131,9 +139,9 @@ namespace ExtraGraphicsSettings
             SetFieldVisible(nameof(GodraysColorRed),                Instance.Godrays == GodraysPresets.Custom);
             SetFieldVisible(nameof(GodraysColorBlue),               Instance.Godrays == GodraysPresets.Custom);
             SetFieldVisible(nameof(GodraysColorGreen),              Instance.Godrays == GodraysPresets.Custom);
+            SetFieldVisible(nameof(GodraysColorAlpha),              Instance.Godrays == GodraysPresets.Custom);
 
             SetFieldVisible(nameof(PercentLabelFontSize),           Instance.EnableStatusBarPercents);
-            SetFieldVisible(nameof(EnableFreeLook),                 Instance.EnableFreeLook);
             SetFieldVisible(nameof(FreeLook_MaxYaw),                Instance.EnableFreeLook);
             SetFieldVisible(nameof(FreeLook_MaxPitch),              Instance.EnableFreeLook);
 
