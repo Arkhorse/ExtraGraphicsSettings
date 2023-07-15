@@ -61,6 +61,7 @@
   <!-- This is a build event. It will copy your dll to the currently defined TheLongDarkPath's Mods folder -->
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="xcopy /y &quot;$(BaseOutputPath)\$(Configuration)\net6.0\$(AssemblyName).dll&quot; &quot;$(TheLongDarkPath)\Mods&quot;" />
+    <Exec Command="xcopy /y &quot;$(BaseOutputPath)\$(Configuration)\net6.0\$(AssemblyName).dll&quot; &quot;P:\Modding\The Long Dark\!! RELEASES&quot;" />
   </Target>
 
 </Project>
