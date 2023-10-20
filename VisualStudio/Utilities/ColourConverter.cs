@@ -31,20 +31,20 @@
             return color;
         }
         /// <summary>
-        /// Used to convert 4 int's to a RGBa Color
+        /// Used to convert 4 float's to a RGBa1 Color
         /// </summary>
         /// <param name="red">Red part of RGBa</param>
         /// <param name="green">Green part of RGBa</param>
         /// <param name="blue">Blue part of RGBa</param>
         /// <param name="alpha">Alpha part of RGBa</param>
         /// <returns>Processed Color</returns>
-        public static Color GetGodraysColourFromSettings(int red, int green, int blue, int alpha)
+        public static Color GetGodraysColourFromSettings(float red, float green, float blue, float alpha)
         {
             Vector4 CustomColor = new Vector4(red, green, blue, alpha);
             return CustomColor;
         }
         /// <summary>
-        /// Used to convert the Godrays Custom creator to a proper RGBa Color
+        /// Used to convert the Godrays Custom creator to a proper RGBa1 Color
         /// </summary>
         /// <returns>Processed Color</returns>
         public static Color GetGodraysColourFromSettings()
