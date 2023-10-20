@@ -1,11 +1,9 @@
+using ExtraGraphicsSettings.Utilities.Logger;
+
 namespace ExtraGraphicsSettings
 {
     public class Settings : JsonModSettings
     {
-        /// <summary>
-        /// Allows first load settings code
-        /// </summary>
-        private static bool IsFirstLoad { get; set; } = true;
         /// <summary>
         /// This is the thing you must call to get the current settings
         /// </summary>
@@ -15,7 +13,7 @@ namespace ExtraGraphicsSettings
         /// </summary>
         internal static Color GodraysColor { get; set; } = Color.magenta;
 
-        internal static Color DefaultGodraysColour { get; set; } = new(0, 0, 0, 0);
+        internal static Color DefaultGodraysColour { get; set; }
 
         #region General
         [Section("General")]
@@ -49,17 +47,17 @@ namespace ExtraGraphicsSettings
         #region Godrays RGBa Selector
 
         [Name("Red")]
-        [Slider(0, 255)]
-        public int GodraysColorRed      = 0;
+        [Slider(0f, 1f)]
+        public float GodraysColorRed      = 1;
         [Name("Blue")]
-        [Slider(0, 255)]
-        public int GodraysColorBlue     = 0;
+        [Slider(0f, 1f)]
+        public float GodraysColorBlue     = 1;
         [Name("Green")]
-        [Slider(0, 255)]
-        public int GodraysColorGreen    = 0;
+        [Slider(0f, 1f)]
+        public float GodraysColorGreen    = 1;
         [Name("Alpha")]
-        [Slider(0, 255)]
-        public int GodraysColorAlpha    = 255;
+        [Slider(0f, 1f)]
+        public float GodraysColorAlpha    = 1;
 
         #endregion
         #region Status Bar Percent
@@ -111,81 +109,29 @@ namespace ExtraGraphicsSettings
         public bool CrosshairModificationBow = false;
         #endregion
 
-        private void FirstLoad()
-        {
-            Logger.Log($"First Load");
-
-            SetFieldVisible(nameof(GodraysColorPreset), false);
-            SetFieldVisible(nameof(GodraysColorRed), false);
-            SetFieldVisible(nameof(GodraysColorBlue), false);
-            SetFieldVisible(nameof(GodraysColorGreen), false);
-            SetFieldVisible(nameof(GodraysColorAlpha), false);
-
-            SetFieldVisible(nameof(PercentLabelFontSize), false);
-            SetFieldVisible(nameof(FreeLook_MaxYaw), false);
-            SetFieldVisible(nameof(FreeLook_MaxPitch), false);
-
-            SetFieldVisible(nameof(CrosshairModificationAlpha), false);
-            SetFieldVisible(nameof(CrosshairModificationStone), false);
-            SetFieldVisible(nameof(CrosshairModificationRifle), false);
-            SetFieldVisible(nameof(CrosshairModificationBow), false);
-
-            IsFirstLoad = false;
-        }
-
-        private void Refresh()
-        {
-            SetFieldVisible(nameof(GodraysColorPreset),             Instance.Godrays == GodraysPresets.Presets);
-            SetFieldVisible(nameof(GodraysColorRed),                Instance.Godrays == GodraysPresets.Custom);
-            SetFieldVisible(nameof(GodraysColorBlue),               Instance.Godrays == GodraysPresets.Custom);
-            SetFieldVisible(nameof(GodraysColorGreen),              Instance.Godrays == GodraysPresets.Custom);
-            SetFieldVisible(nameof(GodraysColorAlpha),              Instance.Godrays == GodraysPresets.Custom);
-
-            SetFieldVisible(nameof(PercentLabelFontSize),           Instance.EnableStatusBarPercents);
-            SetFieldVisible(nameof(FreeLook_MaxYaw),                Instance.EnableFreeLook);
-            SetFieldVisible(nameof(FreeLook_MaxPitch),              Instance.EnableFreeLook);
-
-            SetFieldVisible(nameof(CrosshairModificationAlpha),     Instance.EnableCrosshairModification);
-            SetFieldVisible(nameof(CrosshairModificationStone),     Instance.EnableCrosshairModification);
-            SetFieldVisible(nameof(CrosshairModificationRifle),     Instance.EnableCrosshairModification);
-            SetFieldVisible(nameof(CrosshairModificationBow),       Instance.EnableCrosshairModification);
-        }
-        
-        protected override void OnChange(FieldInfo field, object? oldValue, object? newValue)
-        {
-            // Only use enables here since thats the only time visibility should change
-            if ( field.Name == nameof(Instance.Godrays)
-                || field.Name == nameof(Instance.EnableStatusBarPercents) 
-                || field.Name == nameof(Instance.EnableCrosshairModification))
-            {
-                Instance.Refresh();
-            }
-            base.OnChange(field, oldValue, newValue);
-        }
 
         protected override void OnConfirm()
         {
-            if ( DefaultGodraysColour != new Color(0,0,0,0) )
-            {
-                GodraysColor = Instance.Godrays switch
-                {
-                    GodraysPresets.On => DefaultGodraysColour,
-                    GodraysPresets.Off => Color.clear,
-                    GodraysPresets.Presets => ColourConverter.GetGodraysColourFromSettings(Instance.GodraysColorPreset),
-                    GodraysPresets.Custom => ColourConverter.GetGodraysColourFromSettings(),
-                    _ => DefaultGodraysColour
-                };
-                GodraysUpdater.UpdateGodraysColor();
-            }
-            
+            OnConfirmLoad();
             base.OnConfirm();
+        }
+
+        public static void OnConfirmLoad()
+        {
+            GodraysColor = Instance.Godrays switch
+            {
+                GodraysPresets.On       => DefaultGodraysColour,
+                GodraysPresets.Off      => Color.clear,
+                GodraysPresets.Presets  => ColourConverter.GetGodraysColourFromSettings(Instance.GodraysColorPreset),
+                GodraysPresets.Custom   => ColourConverter.GetGodraysColourFromSettings(),
+                _                       => DefaultGodraysColour
+            };
+            GodraysUpdater.UpdateGodraysColor();
         }
 
         internal static void OnLoad()
         {
             Instance.AddToModSettings(BuildInfo.GUIName);
-            if (IsFirstLoad) Instance.FirstLoad();
-            else Instance.Refresh();
         }
     }
 }
