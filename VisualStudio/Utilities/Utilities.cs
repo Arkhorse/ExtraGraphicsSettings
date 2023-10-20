@@ -1,6 +1,6 @@
 namespace ExtraGraphicsSettings
 {
-    internal class Utilities
+    public class CommonUtilities
     {
         // NOTE: These "Get" methods are volitile. Ensure it is always up to date as otherwise it can break anything tied to GearItem
         // This is used to load prefab info of a GearItem
