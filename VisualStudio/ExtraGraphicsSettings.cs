@@ -1,3 +1,5 @@
+using ExtraGraphicsSettings.Utilities;
+
 namespace ExtraGraphicsSettings
 {
     public class Main : MelonMod
@@ -7,18 +9,19 @@ namespace ExtraGraphicsSettings
             Settings.OnLoad();
         }
 
-        public override void OnSceneWasLoaded(int buildIndex, string sceneName)
+        public override void OnSceneWasInitialized(int buildIndex, string sceneName)
         {
-            if (sceneName.Contains("SANDBOX"))
+            base.OnSceneWasInitialized(buildIndex, sceneName);
+
+            if (SceneUtilities.IsScenePlayable(sceneName))
             {
-                if (!GameManager.GetUniStorm())
+                if (GameManager.GetUniStorm())
                 {
-                    Logger.LogWarning("Game is not loaded yet or user has yet to load a save", Color.yellow);
-                    return;
+                    //TODO: Convert this to json data
+                    Settings.DefaultGodraysColour = GameManager.GetUniStorm().GetActiveTODState().m_GodrayColor;
+                    Settings.OnConfirmLoad();
                 }
-                Settings.DefaultGodraysColour = GameManager.GetUniStorm().GetActiveTODState().m_GodrayColor;
             }
-            base.OnSceneWasLoaded(buildIndex, sceneName);
         }
     }
 }
