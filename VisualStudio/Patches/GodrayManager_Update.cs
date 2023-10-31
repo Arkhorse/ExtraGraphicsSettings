@@ -1,4 +1,6 @@
-﻿namespace ExtraGraphicsSettings
+﻿using ExtraGraphicsSettings.Utilities;
+
+namespace ExtraGraphicsSettings
 {
     [HarmonyPatch(typeof(GodrayManager), nameof(GodrayManager.Update))]
     public class GodrayManager_Update
@@ -9,7 +11,11 @@
 
             Settings.DefaultGodraysColour = GameManager.GetUniStorm().GetActiveTODState().m_GodrayColor;
 
-            if (Settings.Instance.Godrays != GodraysPresets.Off)
+            if (SceneUtilities.IsSceneMenu())
+            {
+                __instance.StopRays();
+            }
+            else if (Settings.Instance.Godrays != GodraysPresets.Off && (GameManager.GetUniStorm().IsNight() && !Settings.Instance.GodraysNight ) )
             {
                 __instance.StartRays();
             }
