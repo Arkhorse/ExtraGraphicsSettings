@@ -1,12 +1,12 @@
-﻿namespace ExtraGraphicsSettings
+﻿
+
+namespace ExtraGraphicsSettings
 {
     [HarmonyPatch(typeof(UniStormWeatherSystem), nameof(UniStormWeatherSystem.InitializeForScene))]
     internal class UniStormWeatherSystem_InitForScene
     {
         public static void Postfix(UniStormWeatherSystem __instance)
         {
-            if (__instance.m_Indoors) return;
-
             if (!Settings.Instance.Vignette)
             {
                 foreach (WeatherStatesData eachWeatherStateConfig in __instance.m_WeatherStateConfigs)
