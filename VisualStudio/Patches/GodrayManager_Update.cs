@@ -25,4 +25,15 @@ namespace ExtraGraphicsSettings
             }
         }
     }
+    [HarmonyPatch(typeof(GodrayManager), nameof(GodrayManager.GodRayObject.Update))]
+    public class GodrayManager_GodRayObject_Update
+    {
+        public static void Postfix(GodrayManager __instance)
+        {
+            if (Settings.Instance.Godrays != GodraysPresets.Off)
+            {
+                __instance.m_PropBlock.SetColor(__instance.m_TintID, GodraysUpdater.GetGodraysColor());
+            }
+        }
+    }
 }
