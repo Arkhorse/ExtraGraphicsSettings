@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtraGraphicsSettings", "VisualStudio\ExtraGraphicsSettings.csproj", "{4A58ED97-7559-4F1A-AB90-93960A941687}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameConfigurationManager", "VisualStudio\GameConfigurationManager.csproj", "{4A58ED97-7559-4F1A-AB90-93960A941687}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
