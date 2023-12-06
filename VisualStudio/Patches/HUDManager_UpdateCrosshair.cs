@@ -1,4 +1,4 @@
-﻿namespace ExtraGraphicsSettings
+﻿namespace GameConfigurationManager
 {
     // [CachedScanResults(RefRangeStart = 336992, RefRangeEnd = 336993, XrefRangeStart = 336876, XrefRangeEnd = 336992, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
     [HarmonyPatch(typeof(HUDManager), nameof(HUDManager.UpdateCrosshair), new Type[] { typeof(Panel_HUD) })]

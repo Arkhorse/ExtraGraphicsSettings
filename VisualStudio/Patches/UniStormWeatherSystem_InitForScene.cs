@@ -1,6 +1,4 @@
-﻿
-
-namespace ExtraGraphicsSettings
+﻿namespace GameConfigurationManager
 {
     [HarmonyPatch(typeof(UniStormWeatherSystem), nameof(UniStormWeatherSystem.InitializeForScene))]
     internal class UniStormWeatherSystem_InitForScene

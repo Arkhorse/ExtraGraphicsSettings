@@ -1,4 +1,4 @@
-﻿namespace ExtraGraphicsSettings.Utilities
+﻿namespace GameConfigurationManager.Utilities
 {
     /// <summary>
     /// 

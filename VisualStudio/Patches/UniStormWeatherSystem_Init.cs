@@ -1,4 +1,4 @@
-﻿namespace ExtraGraphicsSettings
+﻿namespace GameConfigurationManager
 {
     [HarmonyPatch(typeof(UniStormWeatherSystem), nameof(UniStormWeatherSystem.Init))]
     internal class UniStormWeatherSystem_Init

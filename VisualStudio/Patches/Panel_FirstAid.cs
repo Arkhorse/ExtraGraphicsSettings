@@ -1,4 +1,4 @@
-﻿namespace ExtraGraphicsSettings
+﻿namespace GameConfigurationManager
 {
     [HarmonyPatch(typeof(Panel_FirstAid), nameof(Panel_FirstAid.Enable))]
     public static class Panel_FirstAid_Enable

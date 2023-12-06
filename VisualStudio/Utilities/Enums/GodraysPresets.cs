@@ -1,4 +1,4 @@
-﻿namespace ExtraGraphicsSettings
+﻿namespace GameConfigurationManager
 {
     /// <summary>
     /// Used with the Settings class to setup Godrays options

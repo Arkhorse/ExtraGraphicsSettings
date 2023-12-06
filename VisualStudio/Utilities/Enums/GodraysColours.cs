@@ -1,4 +1,4 @@
-﻿namespace ExtraGraphicsSettings
+﻿namespace GameConfigurationManager.Utilities.Enums
 {
     public enum GodraysColours
     {

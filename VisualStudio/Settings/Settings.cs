@@ -1,4 +1,6 @@
-namespace ExtraGraphicsSettings
+using GameConfigurationManager.Utilities.Enums;
+
+namespace GameConfigurationManager
 {
     public class Settings : JsonModSettings
     {

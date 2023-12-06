@@ -1,4 +1,4 @@
-namespace TEMPLATE
+namespace GameConfigurationManager
 {
     public class ConsoleCommands
     {

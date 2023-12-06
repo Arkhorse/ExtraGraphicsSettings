@@ -1,6 +1,6 @@
 ﻿// https://github.com/Willster419/RelhaxModpack/blob/master/RelhaxModpack/RelhaxModpack/Common/BadMemeException.cs
 
-namespace ExtraGraphicsSettings.Utilities.Exceptions
+namespace GameConfigurationManager.Utilities.Exceptions
 {
     /// <summary>
     /// An exception used mostly for mistakes that could happen during development, 'sanity check' type verification. And also for bad memes.

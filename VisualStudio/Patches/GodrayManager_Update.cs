@@ -1,6 +1,7 @@
-﻿using ExtraGraphicsSettings.Utilities;
+﻿using GameConfigurationManager.Utilities;
+using GameConfigurationManager.Utilities.Enums;
 
-namespace ExtraGraphicsSettings
+namespace GameConfigurationManager
 {
     [HarmonyPatch(typeof(GodrayManager), nameof(GodrayManager.Update))]
     public class GodrayManager_Update

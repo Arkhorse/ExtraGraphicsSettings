@@ -1,0 +1,5 @@
+# Extra Graphics Settings v1.1.4 TFTFT Chapter 4
+Small update to fix a missing method
+
+[Repo](<https://github.com/Arkhorse/ExtraGraphicsSettings>)
+[Download](<https://github.com/Arkhorse/ExtraGraphicsSettings/releases/latest>)

@@ -1,16 +1,16 @@
-﻿namespace ExtraGraphicsSettings
+﻿namespace GameConfigurationManager
 {
     public static class BuildInfo
     {
         #region Mandatory
         /// <summary>The machine readable name of the mod (no special characters or spaces)</summary>
-        public const string Name                            = "ExtraGraphicsSettings";
+        public const string Name                            = "GameConfigurationManager";
         /// <summary>Who made the mod</summary>
         public const string Author                          = "The Illusion";
         /// <summary>Current version (Using Major.Minor.Build) </summary>
         public const string Version                         = "1.1.4";
         /// <summary>Name used on GUI's, like ModSettings</summary>
-        public const string GUIName                         = "Extra Graphics Settings";
+        public const string GUIName                         = "GCM";
         /// <summary>The minimum Melon Loader version that your mod requires</summary>
         public const string MelonLoaderVersion              = "0.6.1";
         #endregion
@@ -27,7 +27,7 @@
         /// <summary>Trademark info</summary>
         public const string Trademark                       = null;
         /// <summary>Product Name (Generally use the Name)</summary>
-        public const string Product                         = "ExtraGraphicsSettings";
+        public const string Product                         = "GameConfigurationManager";
         /// <summary>Culture info</summary>
         public const string Culture                         = null;
         /// <summary>Priority of your mod. Most of the time you should not need to change this</summary>

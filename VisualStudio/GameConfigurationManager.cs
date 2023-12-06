@@ -1,7 +1,7 @@
-using ExtraGraphicsSettings.Utilities;
-using ExtraGraphicsSettings.Utilities.Exceptions;
+using GameConfigurationManager.Utilities;
+using GameConfigurationManager.Utilities.Exceptions;
 
-namespace ExtraGraphicsSettings
+namespace GameConfigurationManager
 {
     public class Main : MelonMod
     {

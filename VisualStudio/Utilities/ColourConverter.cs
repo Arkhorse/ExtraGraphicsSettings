@@ -1,4 +1,4 @@
-﻿namespace ExtraGraphicsSettings
+﻿namespace GameConfigurationManager
 {
     /// <summary>
     /// A class containing useful processing functions to convert things to RGBa Color

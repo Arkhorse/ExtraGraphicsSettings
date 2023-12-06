@@ -1,4 +1,4 @@
-﻿namespace ExtraGraphicsSettings
+﻿namespace GameConfigurationManager
 {
     [HarmonyPatch(typeof(PlayerInVehicle), nameof(PlayerInVehicle.EnterVehicle))]
     internal class PlayerInVehicle_EnterVehicle

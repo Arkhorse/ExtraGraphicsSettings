@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace ExtraGraphicsSettings.Utilities.Logger
+namespace GameConfigurationManager.Utilities.Logger
 {
     public class Logging
     {
